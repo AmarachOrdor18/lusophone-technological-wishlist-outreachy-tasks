@@ -1,1 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Amarachi Ordor - Task 1</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #1f1f2e, #2c2c54);
+            color: #fff;
+            padding: 40px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+
+        h2 {
+            margin-bottom: 10px;
+            font-weight: 400;
+            color: #cfcfff;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+
+        #code {
+            white-space: pre-wrap;
+            font-size: 0.85rem;
+            color: #a8e6cf;
+            line-height: 1.6;
+        }
+
+        #results ol {
+            padding-left: 20px;
+        }
+
+        #results li {
+            margin-bottom: 10px;
+            padding: 10px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+
+        #results li:hover {
+            background: rgba(255,255,255,0.15);
+            transform: translateX(5px);
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>Amarachi Ordor - Task 1</h1>
+
+    <div class="card">
+        <h2>My Code</h2>
+        <p id="code"></p>
+    </div>
+
+    <div class="card">
+        <h2>Results</h2>
+        <div id="results"></div>
+    </div>
+</div>
+
+<script id="task_id">
+    let data = [
+        {"page_id": 6682420, "creation_date": "2021-09-13", "title": "André Baniwa"},
+        {"page_id": 4246775, "creation_date": "2013-12-10", "title": "Benki Piyãko"},
+        {"page_id": 5882073, "creation_date": "2018-12-03", "title": "Célia Xakriabá"},
+        {"page_id": 6977673, "creation_date": "2022-10-05", "title": "Chirley Pankará"},
+        {"page_id": 7069044, "creation_date": "2023-02-16", "title": "Cristine Takuá"},
+        {"page_id": 2119511, "creation_date": "2009-01-28", "title": "Eliane Potiguara"},
+        {"page_id": 6714407, "creation_date": "2021-10-09", "title": "Jaider Esbell"},
+        {"page_id": 6977117, "creation_date": "2022-10-04", "title": "Jerônimo Rodrigues"},
+        {"page_id": 6935831, "creation_date": "2022-08-02", "title": "Nanblá Gakran"},
+        {"page_id": 4908665, "creation_date": "2015-11-13", "title": "Sônia Guajajara"},
+        {"page_id": 5886895, "creation_date": "2018-12-12", "title": "Vãngri Kaingáng"},
+        {"page_id": 6549130, "creation_date": "2021-04-10", "title": "Zezico Guajajara"}
+    ];
+
+    // Function to convert date format
+    // Converts "YYYY-MM-DD" → "Month Day, Year"
+    function formatDate(dateStr) {
+        const [year, month, day] = dateStr.split("-").map(Number);
+
+        const monthNames = [
+            "January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+        ];
+
+        return `${monthNames[month - 1]} ${day}, ${year}`;
+    }
+
+    // Create an ordered list element (<ol>)
+    const ol = document.createElement("ol");
+
+    // Loop through each article in the data array
+    data.forEach(function(article) {
+
+        // Format the creation date
+        const formattedDate = formatDate(article.creation_date);
+
+        // Create a list item (<li>)
+        const li = document.createElement("li");
+
+        // Add text content dynamically using template literals
+        li.textContent = `Article "${article.title}" (Page ID ${article.page_id}) was created at ${formattedDate}.`;
+
+        // Append each list item to the ordered list
+        ol.appendChild(li);
+    });
+
+    // Display the list inside the HTML element with id="results"
+    document.getElementById("results").appendChild(ol);
+</script>
+
+<script>
+    // Display the actual code (with comments) on the page
+    document.getElementById("code").innerText =
+        document.getElementById("task_id").text;
+</script>
+
+</body>
+</html>
+
 
