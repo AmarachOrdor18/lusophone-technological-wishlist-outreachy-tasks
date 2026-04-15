@@ -106,16 +106,17 @@
     ];
 
     // Function to convert date format
-    // Converts "YYYY-MM-DD" → "Month Day, Year"
+    // Converts "YYYY-MM-DD" → "Month Day, Year" using Intl.DateTimeFormat
+    // Using a locale-aware formatter avoids hardcoding month names and makes
+    // it easy to switch languages (e.g. "pt-BR" for Portuguese)
     function formatDate(dateStr) {
         const [year, month, day] = dateStr.split("-").map(Number);
-
-        const monthNames = [
-            "January", "February", "March", "April", "May", "June",
-            "July", "August", "September", "October", "November", "December"
-        ];
-
-        return `${monthNames[month - 1]} ${day}, ${year}`;
+        const date = new Date(year, month - 1, day);
+        return new Intl.DateTimeFormat("en-US", {
+            year: "numeric",
+            month: "long",
+            day: "numeric"
+        }).format(date);
     }
 
     // Create an ordered list element (<ol>)
@@ -149,5 +150,3 @@
 
 </body>
 </html>
-
-
